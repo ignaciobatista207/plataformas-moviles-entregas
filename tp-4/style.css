@@ -1,45 +1,39 @@
-/* ── Media Query 1 ──────────────────────────────────────────────
-   Cambia el color de fondo del body cuando la pantalla > 400px  */
+
 @media (min-width: 400px) {
   body {
     background-color: rgb(40, 60, 80);
   }
 }
 
-/* ── Media Query 2 ──────────────────────────────────────────────
-   Centra el h1 cuando la pantalla < 800px                       */
+
 @media (max-width: 800px) {
   h1 {
     text-align: center;
   }
 }
 
-/* ── Media Query 3 ──────────────────────────────────────────────
-   Limita el article a 50ch en orientación horizontal (landscape) */
+
 @media (orientation: landscape) {
   article {
     max-width: 50ch;
   }
 }
 
-/* ── Media Query 4 ──────────────────────────────────────────────
-   Cambia el color de fondo del h1 cuando el alto >= 200px       */
+
 @media (min-height: 200px) {
   h1 {
     background-color: #1a3a5c;
   }
 }
 
-/* ── Media Query 5 ──────────────────────────────────────────────
-   Fuente serif para párrafos al imprimir                        */
+
 @media print {
   p {
     font-family: serif;
   }
 }
 
-/* ── Media Query 6 ──────────────────────────────────────────────
-   Colores claros si el usuario prefiere light mode              */
+
 @media (prefers-color-scheme: light) {
   body {
     color: #111;
@@ -51,8 +45,7 @@
   }
 }
 
-/* ── Media Query 7 ──────────────────────────────────────────────
-   Links con fondo si el dispositivo es pantalla y no tiene hover */
+
 @media screen and (hover: none) {
   a {
     background-color: #212;
@@ -60,16 +53,14 @@
   }
 }
 
-/* ── Media Query 8 ──────────────────────────────────────────────
-   Oculta la imagen en pantallas de 800px a 899px               */
+
 @media screen and (min-width: 800px) and (max-width: 899px) {
   img {
     display: none;
   }
 }
 
-/* ── Media Query 9 ──────────────────────────────────────────────
-   Imagen con alto fijo y object-fit en pantallas de 200px–400px */
+
 @media screen and (min-width: 200px) and (max-width: 400px) {
   img {
     height: 400px;
@@ -77,8 +68,7 @@
   }
 }
 
-/* ── Media Query 10 ─────────────────────────────────────────────
-   Fondo del article cambia si el DPR > 2 (más de 2dppx)        */
+
 @media (resolution: 2dppx) {
   article {
     background-color: #667;
