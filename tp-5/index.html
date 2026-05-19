@@ -1,79 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Versiones con Git</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Versiones con Git</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+  body { background-color: #f8f9fa; }
+  .hero-section { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 4rem 0 3rem; }
+  .hero-section h1 { font-family: 'Georgia', serif; font-weight: 700; letter-spacing: -1px; }
+  .hero-section .lead { color: #a8b8d8; }
+  code { background: #e8f0fe; color: #1a56db; padding: 2px 6px; border-radius: 4px; font-size: 0.88em; }
+  .navbar { background: #0f3460 !important; }
+  .command-card { transition: transform 0.18s, box-shadow 0.18s; }
+  .command-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.13) !important; }
+  .badge-cmd { font-size: 0.75rem; background: #e8f0fe; color: #1a56db; border-radius: 4px; padding: 2px 8px; font-family: monospace; }
+  .toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; }
+</style>
 </head>
 <body>
-    <h1>Control de Versiones con Git</h1>
 
-    <p><strong>Git</strong> es un sistema de control de versiones distribuido, ampliamente utilizado en el desarrollo de
-        software moderno. Fue creado para gestionar proyectos de forma rápida, eficiente y colaborativa.</p>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">🔀 GitGuía</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#comandos">Comandos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#comparacion">Comparación</a></li>
+        <li class="nav-item"><a class="nav-link" href="#formulario">Formulario</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <h2>Comandos más populares de Git</h2>
-    <ul>
-        <li><code>git init</code> - Inicializa un nuevo repositorio Git en el directorio actual. Este comando crea un repositorio vacío.</li>
-        <li><code>git clone [url]</code> - Clona un repositorio remoto en tu máquina local. Ejemplo: <code>git clone https://github.com/usuario/repositorio.git</code>.</li>
-        <li><code>git status</code> - Muestra el estado del repositorio: archivos modificados, nuevos archivos no rastreados, cambios preparados para el commit, etc.</li>
-        <li><code>git add [archivo]</code> - Agrega un archivo o cambios específicos al área de preparación (staging area) para el commit.</li>
-        <li><code>git commit -m "[mensaje]"</code> - Crea un commit con los archivos añadidos al área de preparación, agregando un mensaje descriptivo.</li>
-        <li><code>git push</code> - Sube los cambios locales al repositorio remoto. Generalmente se usa después de un commit para actualizar el repositorio remoto.</li>
-        <li><code>git pull</code> - Obtiene y combina los cambios del repositorio remoto al local. Equivalente a <code>git fetch</code> seguido de <code>git merge</code>.</li>
-        <li><code>git checkout [rama]</code> - Cambia a una rama específica del repositorio. Si la rama no existe, se puede crear con <code>git checkout -b [rama]</code>.</li>
-    </ul>
+<div class="hero-section text-center">
+  <div class="container">
+    <h1 class="display-4 mb-3">Control de Versiones con Git</h1>
+    <p class="lead fs-5 mb-4 col-lg-8 mx-auto">
+      <strong style="color:white;">Git</strong> es un sistema de control de versiones distribuido, ampliamente utilizado en el desarrollo de software moderno. Fue creado para gestionar proyectos de forma rápida, eficiente y colaborativa.
+    </p>
+    <div class="d-flex gap-2 justify-content-center flex-wrap">
+      <button class="btn btn-warning btn-lg fw-semibold px-4" data-bs-toggle="modal" data-bs-target="#modalTips">💡 Ver Tips Avanzados</button>
+      <button class="btn btn-outline-light btn-lg px-4" onclick="mostrarAlert()">🔔 Novedades</button>
+    </div>
+  </div>
+</div>
 
-    <h2>Comparación con otros sistemas</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Sistema</th>
-                <th>Tipo</th>
-                <th>Popularidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Git</td>
-                <td>Distribuido</td>
-                <td>Muy alta</td>
-            </tr>
-            <tr>
-                <td>SVN</td>
-                <td>Centralizado</td>
-                <td>Media</td>
-            </tr>
-            <tr>
-                <td>Mercurial</td>
-                <td>Distribuido</td>
-                <td>Baja</td>
-            </tr>
-            <tr>
-                <td>Perforce</td>
-                <td>Centralizado</td>
-                <td>Especializado (AAA, empresas)</td>
-            </tr>
-        </tbody>
+<div class="container py-4">
+  <div id="alertNovedades" class="alert alert-info alert-dismissible fade show d-none" role="alert">
+    <strong>🎉 Novedad:</strong> Git 2.50 fue lanzado con mejoras de rendimiento en repositorios grandes.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+</div>
+
+<div class="container pb-5" id="comandos">
+  <h2 class="fw-bold mb-1">Comandos más populares de Git</h2>
+  <p class="text-muted mb-3">Hacé clic en un comando para ver su descripción completa.</p>
+
+  <div class="card shadow-sm mb-3 p-1">
+    <div class="accordion" id="accordionComandos">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd1"><span class="badge-cmd me-2">git init</span> Inicializar repositorio</button></h2>
+        <div id="cmd1" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Inicializa un nuevo repositorio Git en el directorio actual. Este comando crea un repositorio vacío listo para trabajar.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd2"><span class="badge-cmd me-2">git clone [url]</span> Clonar repositorio</button></h2>
+        <div id="cmd2" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Clona un repositorio remoto en tu máquina local. Ejemplo: <code>git clone https://github.com/usuario/repositorio.git</code></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd3"><span class="badge-cmd me-2">git status</span> Ver estado</button></h2>
+        <div id="cmd3" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Muestra el estado del repositorio: archivos modificados, nuevos archivos no rastreados, cambios preparados para el commit, etc.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd4"><span class="badge-cmd me-2">git add [archivo]</span> Agregar al staging</button></h2>
+        <div id="cmd4" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Agrega un archivo o cambios específicos al área de preparación (staging area) para el commit.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd5"><span class="badge-cmd me-2">git commit -m "[msg]"</span> Confirmar cambios</button></h2>
+        <div id="cmd5" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Crea un commit con los archivos añadidos al staging, con un mensaje descriptivo.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd6"><span class="badge-cmd me-2">git push</span> Subir cambios</button></h2>
+        <div id="cmd6" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Sube los cambios locales al repositorio remoto. Se usa después de un commit para actualizar el repo remoto.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd7"><span class="badge-cmd me-2">git pull</span> Obtener cambios</button></h2>
+        <div id="cmd7" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Obtiene y combina los cambios del repositorio remoto al local. Equivalente a <code>git fetch</code> + <code>git merge</code>.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cmd8"><span class="badge-cmd me-2">git checkout [rama]</span> Cambiar rama</button></h2>
+        <div id="cmd8" class="accordion-collapse collapse" data-bs-parent="#accordionComandos">
+          <div class="accordion-body">Cambia a una rama específica. Si no existe, se puede crear con <code>git checkout -b [rama]</code>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="fw-bold mt-5 mb-3" id="comparacion">Comparación con otros sistemas</h2>
+  <div class="card shadow-sm p-3 mb-5">
+    <table class="table table-hover table-bordered table-striped mb-0 align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Sistema</th>
+          <th>Tipo</th>
+          <th>Popularidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-success">
+          <td><strong>Git</strong></td>
+          <td><span class="badge bg-primary">Distribuido</span></td>
+          <td>⭐⭐⭐ Muy alta</td>
+        </tr>
+        <tr>
+          <td>SVN</td>
+          <td><span class="badge bg-secondary">Centralizado</span></td>
+          <td>⭐⭐ Media</td>
+        </tr>
+        <tr>
+          <td>Mercurial</td>
+          <td><span class="badge bg-primary">Distribuido</span></td>
+          <td>⭐ Baja</td>
+        </tr>
+        <tr>
+          <td>Perforce</td>
+          <td><span class="badge bg-secondary">Centralizado</span></td>
+          <td>🏢 Especializado (AAA, empresas)</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <h2>¿Ya usaste Git?</h2>
-    <p>Completá el siguiente formulario para compartir tu experiencia:</p>
+  <div class="row g-4 mb-5" id="formulario">
+    <div class="col-lg-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-body p-4">
+          <h2 class="card-title fw-bold fs-4">¿Ya usaste Git?</h2>
+          <p class="card-text text-muted">Completá el siguiente formulario para compartir tu experiencia:</p>
+          <div class="mb-3">
+            <label for="nombre" class="form-label fw-semibold">Tu nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" placeholder="Ej: Juan Pérez">
+          </div>
+          <div class="mb-3">
+            <label for="experiencia" class="form-label fw-semibold">¿Qué usás más?</label>
+            <select id="experiencia" name="experiencia" class="form-select form-select-lg">
+              <option value="git">Git</option>
+              <option value="github">Git + GitHub</option>
+              <option value="otro">Otro sistema</option>
+              <option value="ninguno">Todavía no uso ninguno</option>
+            </select>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button type="button" class="btn btn-dark btn-lg px-4" onclick="enviarFormulario()">Enviar respuesta</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseInfo">¿Por qué Git?</button>
+          </div>
+          <div class="collapse mt-3" id="collapseInfo">
+            <div class="alert alert-light border">
+              Git es la herramienta estándar en la industria. Usarlo te prepara para trabajar en cualquier equipo de desarrollo moderno.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card shadow-sm h-100 border-0 bg-dark text-white">
+        <div class="card-body p-4 d-flex flex-column justify-content-center">
+          <h5 class="fw-bold mb-3">🚀 ¿Querés aprender más?</h5>
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item bg-transparent text-white border-secondary">📘 Pro Git Book (gratis online)</li>
+            <li class="list-group-item bg-transparent text-white border-secondary">🎮 Oh My Git! (juego interactivo)</li>
+            <li class="list-group-item bg-transparent text-white border-secondary">📺 Git & GitHub para principiantes</li>
+            <li class="list-group-item bg-transparent text-white border-secondary">🧪 Learn Git Branching (visual)</li>
+          </ul>
+          <button class="btn btn-warning fw-bold" onclick="mostrarToast()">📋 Copiar cheat sheet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <form class="form">
-        <label for="nombre">Tu nombre:</label>
-        <input type="text" id="nombre" name="nombre" class="form-control">
+<!-- Modal Tips Avanzados -->
+<div class="modal fade" id="modalTips" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title fw-bold">💡 Tips Avanzados de Git</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card border-0 bg-light h-100 p-3">
+              <h6 class="fw-bold">🌿 Trabajar con ramas</h6>
+              <p class="small mb-1">Siempre trabajá en una rama separada para cada feature o fix.</p>
+              <code class="d-block small">git checkout -b feature/mi-feature</code>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 bg-light h-100 p-3">
+              <h6 class="fw-bold">🔍 Ver historial</h6>
+              <p class="small mb-1">Usá <code>git log --oneline --graph</code> para ver el historial de forma visual.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 bg-light h-100 p-3">
+              <h6 class="fw-bold">🧹 Limpiar cambios</h6>
+              <p class="small mb-1"><code>git stash</code> guarda cambios temporalmente sin hacer commit.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 bg-light h-100 p-3">
+              <h6 class="fw-bold">✏️ Modificar último commit</h6>
+              <p class="small mb-1"><code>git commit --amend</code> te permite editar el mensaje del último commit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-dark">Ver documentación oficial</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <label for="experiencia">¿Qué usás más?</label><br>
-        <select id="experiencia" name="experiencia" class="form-select">
-            <option value="git">Git</option>
-            <option value="github">Git + GitHub</option>
-            <option value="otro">Otro sistema</option>
-            <option value="ninguno">Todavía no uso ninguno</option>
-        </select>
+<!-- Toasts -->
+<div class="toast-container">
+  <div id="toastCopy" class="toast align-items-center text-bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">✅ Cheat sheet copiado al portapapeles</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+  <div id="toastEnvio" class="toast align-items-center text-bg-primary border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">📬 ¡Gracias por tu respuesta!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
 
-        <input type="submit" value="Enviar" class="btn btn-primary mt-2">
-    </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function mostrarAlert() {
+  document.getElementById('alertNovedades').classList.remove('d-none');
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+function mostrarToast() {
+  const t = new bootstrap.Toast(document.getElementById('toastCopy'));
+  t.show();
+}
+function enviarFormulario() {
+  const nombre = document.getElementById('nombre').value.trim();
+  if (!nombre) { alert('Por favor ingresá tu nombre'); return; }
+  const t = new bootstrap.Toast(document.getElementById('toastEnvio'));
+  t.show();
+}
+</script>
 </body>
 </html>
