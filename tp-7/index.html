@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&family=Arial:wght@400;700&display=swap" rel="stylesheet">
   <style>
 
-   
+    /* ── Tipografía base (similar a la imagen) ───────────────── */
     body {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 14px;
@@ -19,7 +19,7 @@
       font-family: Georgia, "Times New Roman", serif;
     }
 
-    
+    /* ── Navbar: logo circular ────────────────────────────────── */
     .navbar-logo {
       width: 32px;
       height: 32px;
@@ -30,7 +30,7 @@
       flex-shrink: 0;
     }
 
-  
+    /* ── Carousel placeholder ─────────────────────────────────── */
     .carousel-placeholder {
       height: 260px;
       background-color: #adb5bd;
@@ -39,29 +39,30 @@
       justify-content: center;
     }
 
-    
+    /* ── CAROUSEL: oculto en tablet y móvil ───────────────────── */
+    @media (max-width: 991.98px) {
       #carouselSection { display: none !important; }
     }
 
-    
+    /* ── Sección artículo + sidebar ──────────────────────────── */
     .article-section {
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
 
-  
+    /* En tablet: fondo rosado para la sección artículo */
     @media (min-width: 576px) and (max-width: 991.98px) {
       .article-section {
-        background-color: white;
+        background-color: #f8d7da;
       }
     }
 
-
+    /* ── SIDEBAR: oculto en tablet y móvil ───────────────────── */
     @media (max-width: 991.98px) {
       #sidebar { display: none !important; }
     }
 
-    
+    /* ── Artículo: full width cuando no hay sidebar ───────────── */
     @media (max-width: 991.98px) {
       #mainArticle {
         flex: 0 0 100% !important;
@@ -69,18 +70,20 @@
       }
     }
 
-  
+    /* ── Imágenes del artículo ────────────────────────────────── */
     .article-img {
       height: 100px;
       background-color: #adb5bd;
     }
 
-   
+    /* ── Cards del sidebar (derecha en desktop) ──────────────── */
     .card-img-placeholder {
       height: 100px;
       background-color: #adb5bd;
     }
 
+    /* ── SECCIÓN CARDS en fila (debajo del artículo) ─────────── */
+    /* Desktop: 4 columnas | Tablet: 2 columnas | Mobile: 2 columnas */
     .cards-row-section {
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
@@ -97,7 +100,12 @@
       padding-bottom: 1.5rem;
     }
 
-    @media (min-width: 576px) and (max-width: 991.98px)
+    /* En tablet: fondo rosado para FAQ */
+    @media (min-width: 576px) and (max-width: 991.98px) {
+      .faq-section {
+        background-color: #f8d7da;
+      }
+    }
 
     .faq-section h2 {
       font-size: 1.3rem;
@@ -203,12 +211,14 @@
     </div>
   </div>
 
- 
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- ARTÍCULO + SIDEBAR                                         -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <div class="article-section">
     <div class="container">
       <div class="row g-4">
 
-      
+        <!-- ARTÍCULO PRINCIPAL -->
         <div id="mainArticle" class="col-12 col-lg-8">
           <article>
             <h1 class="fw-bold">Artículo</h1>
@@ -218,7 +228,7 @@
 
             <p>Proin et sem sed nulla scelerisque luctus. Cras metus enim, suscipit in auctor id, dictum a ipsum. Quisque commodo pulvinar neque, sit amet placerat orci venenatis id. Maecenas feugiat ornare ultrices. Aliquam ac feugiat purus. Vestibulum sagittis nisl quis laoreet lobortis. Suspendisse pretium turpis at magna feugiat auctor.</p>
 
-          
+            <!-- 3 imágenes en fila debajo del texto -->
             <div class="row g-2 mt-2">
               <div class="col-4"><div class="article-img"></div></div>
               <div class="col-4"><div class="article-img"></div></div>
@@ -227,7 +237,7 @@
           </article>
         </div>
 
-     
+        <!-- SIDEBAR (solo desktop) -->
         <div id="sidebar" class="col-lg-4">
           <aside>
             <h5 class="fw-bold mb-3">Más artículos</h5>
@@ -265,7 +275,9 @@
     </div>
   </div>
 
-  
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- FILA DE CARDS (4 en desktop, 2 en tablet/mobile)          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <div class="cards-row-section">
     <div class="container">
       <div class="row g-3">
@@ -314,7 +326,9 @@
     </div>
   </div>
 
- 
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- FAQ ACCORDION                                              -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <div class="faq-section">
     <div class="container">
       <h2>FAQ</h2>
@@ -379,6 +393,9 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- FORMULARIO                                                 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <div class="form-section bg-light">
     <div class="container">
       <div class="row justify-content-center">
