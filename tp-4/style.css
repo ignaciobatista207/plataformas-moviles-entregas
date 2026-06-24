@@ -6,7 +6,7 @@
 body {
   margin: 1rem;
   background-color: #012;
-  color: #e6e8ff;
+  color: #71cbff;
   font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 }
 
@@ -91,7 +91,7 @@ img {
   }
 }
 
-/* 7. Pantallas sin hover */
+
 @media screen and (hover: none) {
   a {
     background-color: #212;
