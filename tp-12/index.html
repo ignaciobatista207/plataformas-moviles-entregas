@@ -127,7 +127,7 @@
                 texto.style.fontWeight = "normal";
 
                 document.querySelector("#btn-negrita").textContent =
-                    "Bold (Desactivado)";
+                    "Bold (Negrita)";
 
             } else {
 
@@ -150,7 +150,7 @@
                 texto.style.fontStyle = "normal";
 
                 document.querySelector("#btn-cursiva").textContent =
-                    "Italic (Desactivado)";
+                    "Italic (Cursiva)";
 
             } else {
 
@@ -173,7 +173,7 @@
                 texto.style.textDecoration = "none";
 
                 document.querySelector("#btn-subrayado").textContent =
-                    "Underline (Desactivado)";
+                    "Underline (Subrayado)";
 
             } else {
 
@@ -287,4 +287,27 @@
         // Botones originales
         document
             .querySelectorAll('button[data-formato]')
-            .forEach(e =>
+            .forEach(e => e.addEventListener('click', handlerBoton));
+
+
+        // Botón color
+        document
+            .querySelector("#btn-color")
+            .addEventListener("click", cambiarColor);
+
+
+        // Botón tamaño
+        document
+            .querySelector("#btn-tamaño")
+            .addEventListener("click", cambiarTamaño);
+
+
+        // Botón restaurar
+        document
+            .querySelector("#btn-restaurar")
+            .addEventListener("click", restaurar);
+
+    </script>
+
+</body>
+</html>
